@@ -173,7 +173,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
   <div class="map-legend">
     <div class="legend-item"><div class="legend-dot" style="background:#065f46"></div>3+ programs</div>
     <div class="legend-item"><div class="legend-dot" style="background:#78350f"></div>1–2 programs</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#0f2010"></div>None</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1f2937"></div>None</div>
     <div class="legend-item"><div class="legend-dot" style="background:#00d4ff;opacity:.8"></div>Selected</div>
   </div>
 </div>
@@ -487,10 +487,10 @@ function updateMapColors(){
     const el=document.getElementById('map-'+code);if(!el)return;
     const n=data.incentives.length;
     if(code===selectedState){el.setAttribute('fill','#00d4ff');return;}
-    if(n>=4)el.setAttribute('fill','#013300');
-    else if(n>=2)el.setAttribute('fill','#1f2d45');
-    else if(n>=1)el.setAttribute('fill','#0f2010');
-    else el.setAttribute('fill','#0f2010');
+    if(n>=4)el.setAttribute('fill','#065f46');
+    else if(n>=2)el.setAttribute('fill','#78350f');
+    else if(n>=1)el.setAttribute('fill','#3b1c0a');
+    else el.setAttribute('fill','#1f2937');
   });
 }
 
