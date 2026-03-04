@@ -111,8 +111,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .addr-result-header{background:#0d1117;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .addr-result-loc{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.5px}
 .addr-result-state{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--accent)}
-.addr-programs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#1e293b}
-.addr-program{background:#0f172a;padding:16px 18px}
+.addr-programs{display:flex;flex-wrap:wrap;gap:1px;background:#1e293b}
+.addr-program{background:#0f172a;padding:16px 18px;flex:1;min-width:260px}
 .addr-program-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
 .addr-program-provider{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:.3px}
 .addr-program-amounts{display:flex;gap:16px}
@@ -147,12 +147,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
   <div class="hero-eyebrow">⚡ 2025–2026 Reference Guide</div>
   <h1>Battery Storage<br>Incentives</h1>
   <p>Enter your address below to see exactly which incentives apply to your home — or explore the map to compare all 50 states.</p>
-  <div class="stat-l">States w/ Incentives</div></div>
-  <div class="stat-box"><div class="stat-n">50+</div><div class="stat-l">Total Programs</div></div>
-  <div class="stat-box"><div class="stat-n" id="stat-max">$0</div><div class="stat-l">Best State Max Savings</div></div>
-  <div class="stat-box addr-stat-box" id="addr-stat-box" style="cursor:pointer" onclick="document.getElementById('addr-input').focus()"><div class="stat-n" id="stat-addr">Enter address ↓</div><div class="stat-l">Your Location</div></div>
-</div>
-
+  
 <div class="addr-bar">
   <div class="addr-input-wrap">
     <span class="addr-icon">📍</span>
@@ -947,9 +942,7 @@ function renderAddrResult(stateCode, city, county, displayName) {
       ${annualTotal > 0 ? `<div><div class="addr-total-val cyan">$${Math.round(annualTotal).toLocaleString()}/yr</div><div class="addr-total-lbl">Ongoing / Annual</div></div>` : ''}
     </div>`;
 
-  // Update stat box
-  const statStr = '$' + Math.round(upfrontTotal).toLocaleString() + (annualTotal > 0 ? ' + $'+Math.round(annualTotal).toLocaleString()+'/yr' : '');
-  document.getElementById('stat-addr').textContent = statStr;
+
 
   // Also select this state on the map
   selectState(stateCode);
