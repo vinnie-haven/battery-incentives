@@ -96,29 +96,61 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .footer-links{display:flex;gap:14px}.footer-links a{color:var(--muted);text-decoration:none;transition:color .18s}.footer-links a:hover{color:var(--accent)}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 @media(max-width:860px){.main{grid-template-columns:1fr}.sidebar{position:static;height:auto;max-height:260px}.content{height:auto}.stats-bar,.map-section,.filter-tabs{margin-left:16px;margin-right:16px}.hero{padding:36px 16px 24px}.content{padding:20px 16px}}
+
+/* ── ADDRESS LOOKUP ── */
+.addr-bar{padding:0 24px 18px;max-width:1400px;margin:0 auto}
+.addr-input-wrap{display:flex;align-items:center;gap:0;background:#111827;border:1.5px solid #1e293b;border-radius:12px;overflow:hidden;transition:border-color .2s}
+.addr-input-wrap:focus-within{border-color:var(--accent)}
+.addr-icon{padding:0 14px;font-size:18px;line-height:1;flex-shrink:0}
+.addr-input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:14px 4px;min-width:0}
+.addr-input::placeholder{color:#475569}
+.addr-btn{background:var(--accent);color:#000;border:none;padding:0 22px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;height:100%;min-height:50px;transition:opacity .15s;white-space:nowrap;flex-shrink:0}
+.addr-btn:hover{opacity:.85}
+.addr-btn.loading{opacity:.6;pointer-events:none}
+.addr-result{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid #1e293b}
+.addr-result-header{background:#0d1117;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.addr-result-loc{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.5px}
+.addr-result-state{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--accent)}
+.addr-programs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#1e293b}
+.addr-program{background:#0f172a;padding:16px 18px}
+.addr-program-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.addr-program-provider{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:.3px}
+.addr-program-amounts{display:flex;gap:16px}
+.addr-amt{display:flex;flex-direction:column;gap:2px}
+.addr-amt-val{font-family:'DM Mono',monospace;font-size:15px;font-weight:600}
+.addr-amt-val.upfront{color:#34d399}
+.addr-amt-val.annual{color:#67e8f9}
+.addr-amt-val.zero{color:#475569}
+.addr-amt-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.addr-total-bar{background:#0d1117;padding:14px 18px;display:flex;gap:32px;align-items:center;border-top:1px solid #1e293b}
+.addr-total-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:700}
+.addr-total-val.green{color:#34d399}
+.addr-total-val.cyan{color:#67e8f9}
+.addr-total-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+.addr-none{padding:24px 18px;text-align:center;color:var(--muted);font-size:13px}
+.addr-error{padding:14px 18px;color:#f87171;font-size:12px;font-family:'DM Mono',monospace}
+.addr-nonstackable-note{font-family:'DM Mono',monospace;font-size:10px;color:#f59e0b;padding:8px 18px;background:#0d1117;border-top:1px solid #1e293b}
 </style>
 </head>
 <body>
 <div class="hero">
   <div class="hero-eyebrow">⚡ 2025–2026 Reference Guide</div>
   <h1>Battery Storage<br>Incentives</h1>
-  <p>Every state, utility, and CCA incentive for behind-the-meter residential battery storage across the continental US.</p>
-  <div class="battery-selector">
-    <div class="battery-card selected" id="card-powerwall" onclick="selectBattery('powerwall')">
-      <div class="bc-check">✓</div><div class="bc-brand">Tesla</div><div class="bc-name">Powerwall 3</div>
-      <div class="bc-specs"><div class="bc-spec"><strong>13.5 kWh</strong>Capacity</div><div class="bc-spec"><strong>11.5 kW</strong>Cont. Power</div><div class="bc-spec"><strong>~$15,400</strong>Installed</div><div class="bc-spec"><strong>10-yr</strong>Warranty</div></div>
-    </div>
-    <div class="battery-card franklin" id="card-franklin" onclick="selectBattery('franklin')">
-      <div class="bc-check">✓</div><div class="bc-brand">FranklinWH</div><div class="bc-name">aPower 2</div>
-      <div class="bc-specs"><div class="bc-spec"><strong>13.6 kWh</strong>Capacity</div><div class="bc-spec"><strong>10.0 kW</strong>Cont. Power</div><div class="bc-spec"><strong>~$17,500</strong>Installed</div><div class="bc-spec"><strong>15-yr</strong>Warranty</div></div>
-    </div>
-  </div>
-</div>
-<div class="stats-bar">
+  <p>Enter your address below to see exactly which incentives apply to your home — or explore the map to compare all 50 states.</p>
+  <div class="stats-bar">
   <div class="stat-box"><div class="stat-n">22</div><div class="stat-l">States w/ Incentives</div></div>
   <div class="stat-box"><div class="stat-n">50+</div><div class="stat-l">Total Programs</div></div>
   <div class="stat-box"><div class="stat-n" id="stat-max">$0</div><div class="stat-l">Best State Max Savings</div></div>
-  <div class="stat-box"><div class="stat-n" id="stat-battery">Powerwall 3</div><div class="stat-l">Selected Battery</div></div>
+  <div class="stat-box addr-stat-box" id="addr-stat-box" style="cursor:pointer" onclick="document.getElementById('addr-input').focus()"><div class="stat-n" id="stat-addr">Enter address ↓</div><div class="stat-l">Your Location</div></div>
+</div>
+
+<div class="addr-bar">
+  <div class="addr-input-wrap">
+    <span class="addr-icon">📍</span>
+    <input type="text" id="addr-input" class="addr-input" placeholder="Enter your address to see your exact incentives…" autocomplete="off" />
+    <button class="addr-btn" id="addr-btn" onclick="lookupAddress()">Check Incentives</button>
+  </div>
+  <div class="addr-result" id="addr-result" style="display:none"></div>
 </div>
 <div class="filter-tabs">
   <button class="filter-tab active-tab" id="tab-all" onclick="setFilter('all')">All Programs</button>
@@ -460,9 +492,6 @@ function updateMapColors(){
 // ── BATTERY SELECT ─────────────────────────────────────────────
 function selectBattery(bat){
   selectedBattery=bat;
-  document.getElementById('card-powerwall').classList.toggle('selected',bat==='powerwall');
-  document.getElementById('card-franklin').classList.toggle('selected',bat==='franklin');
-  document.getElementById('stat-battery').textContent=batteries[bat].name;
   buildStateList('');updateMapColors();
   if(selectedState)renderState(selectedState);
   document.getElementById('stat-max').textContent='$'+Math.round(calcMaxSavings()).toLocaleString();
@@ -582,6 +611,286 @@ function buildStateList(filter){
 }
 
 function filterStates(val){buildStateList(val);}
+
+
+// ── TERRITORY LOOKUP ────────────────────────────────────────────────
+// Maps city/county names to program keys for states w/ multiple utility zones
+const TERRITORY = {
+  CA: {
+    cities: {
+      'san diego':true,'chula vista':true,'encinitas':true,'national city':true,
+      'imperial beach':true,'la mesa':true,'santee':true,'lemon grove':true
+    },
+    sdcp: ['san diego','chula vista','encinitas','national city','imperial beach','la mesa','santee','lemon grove'],
+    sjce: ['san jose'],
+    pce_counties: ['san mateo'],
+    pce_cities: ['san mateo','redwood city','burlingame','daly city','south san francisco',
+      'foster city','millbrae','belmont','san carlos','menlo park','east palo alto',
+      'half moon bay','los banos','pacifica','brisbane','colma','hillsborough',
+      'portola valley','woodside','atherton'],
+    svce_cities: ['cupertino','saratoga','campbell','monte sereno','los altos',
+      'los altos hills','sunnyvale','mountain view','milpitas','morgan hill','gilroy',
+      'santa clara','los gatos'],
+    mce_counties: ['marin','napa','solano','contra costa'],
+    mce_cities: ['san rafael','novato','mill valley','richmond','san pablo','el cerrito',
+      'napa','vallejo','fairfield','benicia','hercules','pinole','san anselmo',
+      'corte madera','larkspur','tiburon','sausalito'],
+    cce3_counties: ['santa cruz','monterey','san luis obispo','santa barbara'],
+    cce3_cities: ['monterey','salinas','santa cruz','watsonville','carmel',
+      'pacific grove','seaside','marina','hollister','san benito'],
+    ladwp_cities: ['los angeles'],
+    anaheim_cities: ['anaheim'],
+  },
+  OR: {
+    pge_cities: ['portland','beaverton','gresham','lake oswego','tigard','hillsboro',
+      'tualatin','sherwood','wilsonville','oregon city','west linn','happy valley'],
+    pp_cities: ['eugene','salem','medford','bend','corvallis','albany','springfield',
+      'grants pass','roseburg','klamath falls','astoria','pendleton'],
+  },
+  CO: {
+    xcel_cities: ['denver','boulder','fort collins','aurora','lakewood','westminster',
+      'arvada','broomfield','longmont','loveland','pueblo west','brighton',
+      'northglenn','thornton','commerce city','englewood','littleton','castle rock',
+      'wheat ridge','golden','louisville','lafayette','superior','erie'],
+    bhe_cities: ['pueblo','colorado springs','fountain','canon city'],
+  },
+  MN: {
+    xcel_cities: ['minneapolis','saint paul','st paul','bloomington','plymouth',
+      'eden prairie','edina','minnetonka','maple grove','brooklyn park','burnsville',
+      'woodbury','coon rapids','apple valley','eagan','roseville','richfield',
+      'fridley','columbia heights','st louis park','golden valley'],
+  },
+};
+
+function matchTerritory(state, city, county) {
+  city = (city||'').toLowerCase().trim();
+  county = (county||'').toLowerCase().trim().replace(' county','');
+  const T = TERRITORY[state];
+  if (!T) return null;
+
+  if (state==='CA') {
+    if (T.ladwp_cities.includes(city)) return 'LADWP';
+    if (T.anaheim_cities.includes(city)) return 'ANAHEIM';
+    if (T.sdcp.includes(city)) return 'SDCP';
+    if (T.sjce.includes(city)) return 'SJCE';
+    if (T.svce_cities.includes(city)) return 'SVCE';
+    if (T.pce_cities.includes(city) || T.pce_counties.includes(county)) return 'PCE';
+    if (T.mce_cities.includes(city) || T.mce_counties.includes(county)) return 'MCE';
+    if (T.cce3_cities.includes(city) || T.cce3_counties.includes(county)) return '3CE';
+    return 'PGE'; // default to PG&E rebate
+  }
+  if (state==='OR') {
+    if (T.pge_cities.includes(city)) return 'PGE_OR';
+    return 'PP_OR';
+  }
+  if (state==='CO') {
+    if (T.bhe_cities.includes(city)) return 'BHE_CO';
+    return 'XCEL_CO';
+  }
+  if (state==='MN') {
+    if (T.xcel_cities.includes(city)) return 'XCEL_MN';
+    return 'MN_COMM';
+  }
+  return null;
+}
+
+// Program filter by territory key
+const TERRITORY_PROGRAMS = {
+  CA: {
+    LADWP:   ['LADWP Battery Storage Rebate'],
+    ANAHEIM: ['Anaheim Public Utilities Battery Rebate'],
+    SDCP:    ['SDCP Solar Battery Savings'],
+    SJCE:    ['SJCE EcoHome Battery Rebate'],
+    SVCE:    ['SVCE eHub Battery Rebate'],
+    PCE:     ['PCE Solar + Battery Savings'],
+    MCE:     ['MCE Solar+Storage Bill Credits'],
+    '3CE':   ['3CE Residential Battery Rebate'],
+    PGE:     ['PG&E Permanent Battery Storage Rebate'],
+  },
+  OR: {
+    PGE_OR:  ['Energy Trust Battery Rebate'],
+    PP_OR:   ['Pacific Power Wattsmart — Upfront','Pacific Power Wattsmart — Annual Credit'],
+  },
+  CO: {
+    XCEL_CO: ['CO Residential Energy Storage Tax Credit','Xcel Energy Storage Rebate','Xcel Energy Annual VPP Credit'],
+    BHE_CO:  ['CO Residential Energy Storage Tax Credit','Black Hills Energy Battery Rebate'],
+  },
+  MN: {
+    XCEL_MN: ['Xcel Energy MN Storage Rebate'],
+    MN_COMM: ['MN Commerce Storage Rebate (non-Xcel)'],
+  },
+};
+
+async function lookupAddress() {
+  const input = document.getElementById('addr-input').value.trim();
+  if (!input) return;
+  const btn = document.getElementById('addr-btn');
+  const resultDiv = document.getElementById('addr-result');
+  btn.textContent = 'Looking up…';
+  btn.classList.add('loading');
+  resultDiv.style.display = 'none';
+
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(input)}&format=json&addressdetails=1&limit=1&countrycodes=us`;
+    const res = await fetch(url, {headers:{'Accept-Language':'en-US','User-Agent':'battery-incentives-tool'}});
+    const data = await res.json();
+
+    if (!data.length) {
+      showAddrError('Address not found. Try a full address like "123 Main St, San Jose, CA"');
+      return;
+    }
+
+    const place = data[0];
+    const addr = place.address;
+    const stateAbbr = getStateAbbr(addr.state || addr['ISO3166-2-lvl4'] || '');
+    const city = (addr.city || addr.town || addr.village || addr.suburb || '').toLowerCase();
+    const county = (addr.county || '').toLowerCase().replace(' county','');
+
+    if (!stateAbbr || !incentiveData[stateAbbr]) {
+      showAddrError(`Could not determine state from address.`);
+      return;
+    }
+
+    renderAddrResult(stateAbbr, city, county, place.display_name);
+
+  } catch(e) {
+    showAddrError('Lookup failed — check your connection and try again.');
+  } finally {
+    btn.textContent = 'Check Incentives';
+    btn.classList.remove('loading');
+  }
+}
+
+function showAddrError(msg) {
+  const r = document.getElementById('addr-result');
+  r.style.display = 'block';
+  r.innerHTML = `<div class="addr-error">⚠ ${msg}</div>`;
+}
+
+function renderAddrResult(stateCode, city, county, displayName) {
+  const b = batteries[selectedBattery];
+  const stateData = incentiveData[stateCode];
+  const territory = matchTerritory(stateCode, city, county);
+  const territoryPrograms = TERRITORY_PROGRAMS[stateCode]?.[territory];
+  const r = document.getElementById('addr-result');
+
+  // Filter incentives to those applicable to this address
+  let applicable = stateData.incentives;
+  if (territoryPrograms) {
+    // Split: territory-specific programs + state-wide programs (type==='state' or 'tax')
+    const statewide = stateData.incentives.filter(i => i.type==='state' || i.type==='tax' || i.tags.includes('tax'));
+    const local = stateData.incentives.filter(i => territoryPrograms.includes(i.name));
+    applicable = [...statewide, ...local];
+    // Remove dupes
+    const seen = new Set();
+    applicable = applicable.filter(i => { if(seen.has(i.name)) return false; seen.add(i.name); return true; });
+  }
+
+  if (!applicable.length) {
+    r.style.display = 'block';
+    r.innerHTML = `
+      <div class="addr-result-header">
+        <div>
+          <div class="addr-result-state">${stateData.name}</div>
+          <div class="addr-result-loc">${displayName.split(',').slice(0,3).join(',')}</div>
+        </div>
+      </div>
+      <div class="addr-none">No active incentive programs found for this address.</div>`;
+    document.getElementById('stat-addr').textContent = stateData.name + ' — no programs';
+    return;
+  }
+
+  let upfrontTotal = 0, annualTotal = 0;
+  let programsHtml = '';
+
+  const calcResults = applicable.map(inc => {
+    const {amount} = inc.calc(b);
+    const isAnnual = inc.tags.includes('vpp') || inc.tags.includes('annual');
+    return {inc, amount, isAnnual};
+  });
+
+  // If nonStackable, pick best upfront only
+  if (stateData.nonStackable) {
+    const upfrontOpts = calcResults.filter(r => !r.isAnnual);
+    const annualOpts = calcResults.filter(r => r.isAnnual);
+    const bestUpfront = upfrontOpts.reduce((best, r) => r.amount > (best?.amount||0) ? r : best, null);
+    const renderList = bestUpfront ? [bestUpfront, ...annualOpts] : annualOpts;
+    renderList.forEach(({inc, amount, isAnnual}) => {
+      if (!isAnnual) upfrontTotal += amount; else annualTotal += amount;
+      programsHtml += programCard(inc, amount, isAnnual);
+    });
+  } else {
+    calcResults.forEach(({inc, amount, isAnnual}) => {
+      if (!isAnnual) upfrontTotal += amount; else annualTotal += amount;
+      programsHtml += programCard(inc, amount, isAnnual);
+    });
+  }
+
+  const locShort = displayName.split(',').slice(0,3).join(',');
+  const nonStackNote = stateData.nonStackable ? '<div class="addr-nonstackable-note">⚠ Best single upfront program shown (programs are territory-based)</div>' : '';
+
+  r.style.display = 'block';
+  r.innerHTML = `
+    <div class="addr-result-header">
+      <div>
+        <div class="addr-result-state">${stateData.name}${territory ? ' · ' + territory : ''}</div>
+        <div class="addr-result-loc">${locShort}</div>
+      </div>
+    </div>
+    <div class="addr-programs">${programsHtml}</div>
+    ${nonStackNote}
+    <div class="addr-total-bar">
+      <div><div class="addr-total-val green">$${Math.round(upfrontTotal).toLocaleString()}</div><div class="addr-total-lbl">Upfront Rebates</div></div>
+      ${annualTotal > 0 ? `<div><div class="addr-total-val cyan">$${Math.round(annualTotal).toLocaleString()}/yr</div><div class="addr-total-lbl">Ongoing / Annual</div></div>` : ''}
+    </div>`;
+
+  // Update stat box
+  const statStr = '$' + Math.round(upfrontTotal).toLocaleString() + (annualTotal > 0 ? ' + $'+Math.round(annualTotal).toLocaleString()+'/yr' : '');
+  document.getElementById('stat-addr').textContent = statStr;
+
+  // Also select this state on the map
+  selectState(stateCode);
+}
+
+function programCard(inc, amount, isAnnual) {
+  const upfrontStr = !isAnnual ? `<div class="addr-amt"><div class="addr-amt-val ${amount>0?'upfront':'zero'}">$${Math.round(amount).toLocaleString()}</div><div class="addr-amt-lbl">Upfront</div></div>` : '';
+  const annualStr = isAnnual ? `<div class="addr-amt"><div class="addr-amt-val ${amount>0?'annual':'zero'}">$${Math.round(amount).toLocaleString()}/yr</div><div class="addr-amt-lbl">Annual / Ongoing</div></div>` : '';
+  const linkStr = inc.url ? `<a href="${inc.url}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block">↗ Program details</a>` : '';
+  return `<div class="addr-program">
+    <div class="addr-program-name">${inc.name}</div>
+    <div class="addr-program-provider">${inc.provider}</div>
+    <div class="addr-program-amounts">${upfrontStr}${annualStr}</div>
+    ${linkStr}
+  </div>`;
+}
+
+// State name → abbreviation map
+const STATE_NAMES = {
+  'alabama':'AL','alaska':'AK','arizona':'AZ','arkansas':'AR','california':'CA',
+  'colorado':'CO','connecticut':'CT','delaware':'DE','florida':'FL','georgia':'GA',
+  'hawaii':'HI','idaho':'ID','illinois':'IL','indiana':'IN','iowa':'IA',
+  'kansas':'KS','kentucky':'KY','louisiana':'LA','maine':'ME','maryland':'MD',
+  'massachusetts':'MA','michigan':'MI','minnesota':'MN','mississippi':'MS',
+  'missouri':'MO','montana':'MT','nebraska':'NE','nevada':'NV','new hampshire':'NH',
+  'new jersey':'NJ','new mexico':'NM','new york':'NY','north carolina':'NC',
+  'north dakota':'ND','ohio':'OH','oklahoma':'OK','oregon':'OR','pennsylvania':'PA',
+  'rhode island':'RI','south carolina':'SC','south dakota':'SD','tennessee':'TN',
+  'texas':'TX','utah':'UT','vermont':'VT','virginia':'VA','washington':'WA',
+  'west virginia':'WV','wisconsin':'WI','wyoming':'WY','district of columbia':'DC',
+};
+function getStateAbbr(s) {
+  if (!s) return null;
+  const clean = s.toLowerCase().trim().replace(/^us-/i,'');
+  if (clean.length===2) return clean.toUpperCase();
+  return STATE_NAMES[clean] || null;
+}
+
+// Allow Enter key to trigger lookup
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('addr-input').addEventListener('keydown', e => {
+    if (e.key==='Enter') lookupAddress();
+  });
+});
 
 // ── INIT ───────────────────────────────────────────────────────
 buildMap();
