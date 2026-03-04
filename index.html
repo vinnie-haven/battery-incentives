@@ -27,10 +27,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .bc-spec{font-size:11px;color:var(--muted)}.bc-spec strong{display:block;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);font-weight:500}
 .bc-check{position:absolute;top:11px;right:13px;width:20px;height:20px;background:var(--accent);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:11px;color:#000}
 .battery-card.selected .bc-check{display:flex}.battery-card.selected.franklin .bc-check{background:var(--accent2);color:#fff}
-.stats-bar{display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:22px 36px 0}
-.stat-box{flex:1;padding:12px 18px;border-right:1px solid var(--border);text-align:center}.stat-box:last-child{border-right:none}
-.stat-n{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)}
-.stat-l{font-size:11px;color:var(--muted);margin-top:2px}
+
+.stat-box:last-child{border-right:none}
+
+
 .map-section{margin:20px 36px 0;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .map-header{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .map-header-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
@@ -95,7 +95,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .footer{border-top:1px solid var(--border);padding:16px 36px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:10px}
 .footer-links{display:flex;gap:14px}.footer-links a{color:var(--muted);text-decoration:none;transition:color .18s}.footer-links a:hover{color:var(--accent)}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-@media(max-width:860px){.main{grid-template-columns:1fr}.sidebar{position:static;height:auto;max-height:260px}.content{height:auto}.stats-bar,.map-section,.filter-tabs{margin-left:16px;margin-right:16px}.hero{padding:36px 16px 24px}.content{padding:20px 16px}}
+@media(max-width:860px){.main{grid-template-columns:1fr}.sidebar{position:static;height:auto;max-height:260px}.content{height:auto}.hero{padding:36px 16px 24px}.content{padding:20px 16px}}
 
 /* ── ADDRESS LOOKUP ── */
 .addr-bar{padding:0 24px 18px;max-width:1400px;margin:0 auto}
@@ -130,6 +130,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .addr-none{padding:24px 18px;text-align:center;color:var(--muted);font-size:13px}
 .addr-error{padding:14px 18px;color:#f87171;font-size:12px;font-family:'DM Mono',monospace}
 .addr-nonstackable-note{font-family:'DM Mono',monospace;font-size:10px;color:#f59e0b;padding:8px 18px;background:#0d1117;border-top:1px solid #1e293b}
+
+/* ── ADDRESS AUTOCOMPLETE ── */
+.addr-input-wrap{position:relative}
+.addr-autocomplete{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#111827;border:1.5px solid #1e293b;border-radius:10px;overflow:hidden;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.5);display:none}
+.addr-autocomplete.open{display:block}
+.addr-ac-item{padding:13px 18px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid #1e293b;transition:background .12s;font-family:'DM Mono',monospace}
+.addr-ac-item:last-child{border-bottom:none}
+.addr-ac-item:hover,.addr-ac-item.active{background:#1e293b;color:var(--accent)}
+.addr-ac-item .addr-ac-main{font-size:13px;margin-bottom:2px}
+.addr-ac-item .addr-ac-sub{font-size:10px;color:var(--muted);letter-spacing:.3px}
 </style>
 </head>
 <body>
@@ -137,8 +147,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
   <div class="hero-eyebrow">⚡ 2025–2026 Reference Guide</div>
   <h1>Battery Storage<br>Incentives</h1>
   <p>Enter your address below to see exactly which incentives apply to your home — or explore the map to compare all 50 states.</p>
-  <div class="stats-bar">
-  <div class="stat-box"><div class="stat-n">22</div><div class="stat-l">States w/ Incentives</div></div>
+  <div class="stat-l">States w/ Incentives</div></div>
   <div class="stat-box"><div class="stat-n">50+</div><div class="stat-l">Total Programs</div></div>
   <div class="stat-box"><div class="stat-n" id="stat-max">$0</div><div class="stat-l">Best State Max Savings</div></div>
   <div class="stat-box addr-stat-box" id="addr-stat-box" style="cursor:pointer" onclick="document.getElementById('addr-input').focus()"><div class="stat-n" id="stat-addr">Enter address ↓</div><div class="stat-l">Your Location</div></div>
@@ -149,6 +158,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
     <span class="addr-icon">📍</span>
     <input type="text" id="addr-input" class="addr-input" placeholder="Enter your address to see your exact incentives…" autocomplete="off" />
     <button class="addr-btn" id="addr-btn" onclick="lookupAddress()">Check Incentives</button>
+    <div class="addr-autocomplete" id="addr-autocomplete"></div>
   </div>
   <div class="addr-result" id="addr-result" style="display:none"></div>
 </div>
@@ -494,7 +504,7 @@ function selectBattery(bat){
   selectedBattery=bat;
   buildStateList('');updateMapColors();
   if(selectedState)renderState(selectedState);
-  document.getElementById('stat-max').textContent='$'+Math.round(calcMaxSavings()).toLocaleString();
+  
 }
 
 function calcMaxSavings(){
@@ -721,6 +731,99 @@ const TERRITORY_PROGRAMS = {
   },
 };
 
+
+// ── ADDRESS AUTOCOMPLETE ─────────────────────────────────────────────
+let acTimer = null, acResults = [], acIdx = -1;
+
+function initAutocomplete() {
+  const input = document.getElementById('addr-input');
+  const dropdown = document.getElementById('addr-autocomplete');
+
+  input.addEventListener('input', () => {
+    clearTimeout(acTimer);
+    const val = input.value.trim();
+    if (val.length < 4) { closeAC(); return; }
+    acTimer = setTimeout(() => fetchSuggestions(val), 280);
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); moveAC(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); moveAC(-1); }
+    else if (e.key === 'Enter') {
+      if (acIdx >= 0 && acResults[acIdx]) {
+        selectAC(acResults[acIdx]);
+      } else {
+        closeAC();
+        lookupAddress();
+      }
+    } else if (e.key === 'Escape') { closeAC(); }
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.addr-input-wrap')) closeAC();
+  });
+}
+
+async function fetchSuggestions(query) {
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=5&countrycodes=us`;
+    const res = await fetch(url, { headers: { 'Accept-Language': 'en-US', 'User-Agent': 'battery-incentives-tool' }});
+    const data = await res.json();
+    acResults = data;
+    renderAC(data);
+  } catch(e) { closeAC(); }
+}
+
+function renderAC(results) {
+  const dropdown = document.getElementById('addr-autocomplete');
+  if (!results.length) { closeAC(); return; }
+  acIdx = -1;
+
+  dropdown.innerHTML = results.map((r, i) => {
+    const addr = r.address;
+    const city = addr.city || addr.town || addr.village || addr.suburb || '';
+    const state = addr.state || '';
+    const zip = addr.postcode || '';
+    // Main line: street address
+    const parts = r.display_name.split(',');
+    const main = parts.slice(0, 2).join(',').trim();
+    const sub = [city, state, zip].filter(Boolean).join(', ');
+    return `<div class="addr-ac-item" data-idx="${i}" onmousedown="selectAC(acResults[${i}])">
+      <div class="addr-ac-main">${main}</div>
+      <div class="addr-ac-sub">${sub}</div>
+    </div>`;
+  }).join('');
+
+  dropdown.classList.add('open');
+}
+
+function moveAC(dir) {
+  const items = document.querySelectorAll('.addr-ac-item');
+  if (!items.length) return;
+  items[acIdx >= 0 ? acIdx : (dir > 0 ? items.length - 1 : 0)]?.classList.remove('active');
+  acIdx = Math.max(0, Math.min(items.length - 1, (acIdx < 0 ? (dir > 0 ? 0 : items.length - 1) : acIdx + dir)));
+  items[acIdx].classList.add('active');
+  document.getElementById('addr-input').value = acResults[acIdx].display_name.split(',').slice(0,4).join(',');
+}
+
+function selectAC(result) {
+  document.getElementById('addr-input').value = result.display_name.split(',').slice(0,4).join(',');
+  closeAC();
+  // Directly render result without re-fetching
+  const addr = result.address;
+  const stateAbbr = getStateAbbr(addr.state || '');
+  const city = (addr.city || addr.town || addr.village || addr.suburb || '').toLowerCase();
+  const county = (addr.county || '').toLowerCase().replace(' county','');
+  if (stateAbbr && incentiveData[stateAbbr]) {
+    renderAddrResult(stateAbbr, city, county, result.display_name);
+  }
+}
+
+function closeAC() {
+  document.getElementById('addr-autocomplete').classList.remove('open');
+  acIdx = -1;
+}
+
 async function lookupAddress() {
   const input = document.getElementById('addr-input').value.trim();
   if (!input) return;
@@ -887,15 +990,13 @@ function getStateAbbr(s) {
 
 // Allow Enter key to trigger lookup
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('addr-input').addEventListener('keydown', e => {
-    if (e.key==='Enter') lookupAddress();
-  });
+  initAutocomplete();
 });
 
 // ── INIT ───────────────────────────────────────────────────────
 buildMap();
 buildStateList('');
-document.getElementById('stat-max').textContent='$'+Math.round(calcMaxSavings()).toLocaleString();
+
 </script>
 </body>
 </html>
