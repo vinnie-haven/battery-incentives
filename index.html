@@ -278,7 +278,7 @@ const batteries={
 let selectedBattery='powerwall',selectedState=null,activeFilter='all';
 
 const incentiveData={
-  CA:{name:"California",description:"Active CCA and utility battery programs as of 2026. Note: SGIP (the state rebate program) is fully closed — ratepayer-funded budgets hit their Dec 30, 2025 deadline and the AB 209 RSSE budget is fully reserved/waitlisted. CCA programs below are the live options.",nonStackable:false,incentives:[
+  CA:{name:"California",description:"Active CCA and utility battery programs as of 2026. SGIP is fully closed as of Dec 31, 2025. Each program below serves a different utility territory — you can only access the one covering your address.",nonStackable:true,incentives:[
     {name:"PG&E Permanent Battery Storage Rebate",provider:"Pacific Gas & Electric",type:"utility",calc:b=>({amount:7500,label:"Up to $7,500 flat rebate"}),tags:["upfront"],url:"https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/permanent-battery-storage-rebate.html",desc:"PG&E offers up to $7,500 for qualifying permanent battery storage. One rebate per customer account. Available to all PG&E residential customers."},
     {name:"3CE Residential Battery Rebate",provider:"Central Coast Community Energy (CCA)",type:"utility",calc:b=>({amount:7800,label:"Up to $7,800 rebate"}),tags:["upfront","cca"],url:"https://3cenergy.org/rebates/residential-battery-rebate-program/",desc:"Central Coast Community Energy offers rebates up to $7,800 (Monterey Bay / Central Coast area). Battery must be programmed to discharge during peak hours 4–9pm."},
     {name:"Anaheim Public Utilities Battery Rebate",provider:"Anaheim Public Utilities",type:"utility",calc:b=>({amount:3000,label:"Up to $3,000 rebate"}),tags:["upfront"],url:"https://www.anaheim.net/5730/Battery-Storage",desc:"City of Anaheim municipal utility offers a $3,000 rebate for residential battery storage installation."},
@@ -547,7 +547,7 @@ function renderState(code){
     </div>
   </div>`;
   if(sd.nonStackable&&allIncs.length>0){
-    html+=`<div class="ca-notice"><strong>⚠ Not Stackable:</strong> California programs generally cannot be combined. You qualify for one SGIP tier based on income + location. Separately, you may access a CCA/utility program in your territory. Talk to an approved SGIP contractor to identify your best path.</div>`;
+    html+=`<div class="ca-notice"><strong>⚠ Territory-Based:</strong> These programs serve different utility service areas — you can only access the one that covers your address. The total shown reflects the best single program available in California.</div>`;
   }
   if(filtered.length===0&&allIncs.length===0){
     html+=`<div class="no-incentives"><div class="no-incentives-icon">💡</div><div class="no-incentives-text">No active incentives found for ${sd.name}</div><div class="no-incentives-sub">Check <a href="https://www.dsireusa.org" target="_blank" style="color:var(--accent)">DSIRE.org</a> for updates.</div></div>`;
