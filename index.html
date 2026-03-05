@@ -405,63 +405,28 @@ body {
 /* ─── MAIN EXPLORER ──────────────────────────────────────────────────────── */
 .explorer {
   display: grid;
-  grid-template-columns: 220px 340px 1fr;
-  height: 620px;
-  border-top: none;
+  grid-template-columns: 380px 1fr;
+  height: 660px;
   border-top: 1px solid var(--haven-off3);
 }
 
 /* Sidebar */
-.sidebar {
-  background: var(--haven-off2);
-  border-right: 1px solid var(--haven-off3);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.sidebar-top { padding: 12px 12px 8px; border-bottom: 1px solid var(--haven-off3); }
-.sidebar-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #555555;
-  padding: 8px 12px 5px;
-  border-bottom: 1px solid var(--haven-off3);
-}
-#state-list { overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: var(--haven-off3) transparent; }
-.search-box {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--haven-off3);
-  border-radius: 5px;
-  padding: 8px 11px;
-  color: var(--haven-green);
-  font-family: var(--mono);
-  font-size: 11px;
-  outline: none;
-  transition: border-color .14s;
-}
-.search-box:focus { border-color: var(--haven-green); }
-.search-box::placeholder { color: var(--ink4); }
-.state-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-left: 2px solid transparent;
-  font-size: 12px;
-  transition: background .1s;
-}
-.state-item:hover { background: var(--lime-bg); }
-.state-item.active { background: rgba(1,51,0,.08); border-left-color: var(--haven-green); color: var(--haven-green); font-weight: 600; }
-.state-item-name { font-weight: 500; color: var(--haven-green); }
+
+
+
+
+
+
+
+
+
+
+
 .state-badge { display: flex; gap: 3px; align-items: center; }
 .badge { width: 5px; height: 5px; border-radius: 50%; background: var(--haven-off3); }
 .badge.has-state { background: var(--sage); }
 .badge.has-utility { background: var(--blue); }
-.state-total { font-family: var(--mono); font-size: 10px; color: #666666; }
+
 
 /* Map panel */
 .map-panel {
@@ -620,7 +585,7 @@ body {
   .battery-strip { padding: 12px 16px; }
   .control-bar { padding: 0 16px; }
   .explorer { grid-template-columns: 1fr; height: auto; }
-  .sidebar { max-height: 200px; border-right: none; border-bottom: 1px solid var(--rule); }
+  
   .content { height: auto; min-height: 400px; padding: 16px; }
   .footer { padding: 14px 16px; }
 }
@@ -758,17 +723,7 @@ body {
 <div class="explorer">
 
   <!-- SIDEBAR: state list -->
-  <div class="sidebar">
-    <div class="sidebar-top">
-      <input class="search-box" type="text" placeholder="Search states…" oninput="filterStates(this.value)">
-    </div>
-    <div class="sidebar-label">All 48 States</div>
-    <div id="all-states-item" class="state-item active" onclick="selectAllStates()" style="border-left:2px solid var(--haven);background:var(--haven-bg);">
-      <span class="state-item-name" style="color:var(--haven);">⚡ All States</span>
-      <span class="state-total" style="color:var(--haven);">Overview</span>
-    </div>
-    <div id="state-list"></div>
-  </div>
+  
 
   <!-- MAP -->
   <div class="map-panel">
@@ -973,7 +928,7 @@ const incentiveData={
     {name:"SJCE EcoHome Battery Rebate",provider:"San José Clean Energy (CCA)",type:"utility",calc:b=>({amount:Math.min(b.kwh*125,3250),label:`$125/kWh up to $3,250`}),tags:["upfront","cca"],url:"https://sanjosecleanenergy.org/ecohome-rebate/",desc:"San José Clean Energy EcoHome Rebate: $125/kWh for residential battery storage, capped at $3,250 per system (up to 26 kWh total). SJCE also partners with Haven Energy to help low-income customers access SGIP."},
     {name:"SVCE eHub Battery Rebate",provider:"Silicon Valley Clean Energy (CCA)",type:"utility",calc:b=>({amount:b.kwh*125,label:`~$125/kWh incentive`}),tags:["upfront","cca"],url:"https://ehub.svcleanenergy.org/home-upgrades",desc:"Silicon Valley Clean Energy offers battery rebates and financing via its eHub portal for customers in Cupertino, Saratoga, Campbell, Monte Sereno, and other SVCE service area cities."},
     {name:"MCE Solar+Storage Bill Credits",provider:"Marin Clean Energy (CCA)",type:"utility",calc:b=>({amount:b.kwh*50,label:"Bill credits for solar+storage"}),tags:["annual","cca"],onBill:true,url:"https://mcecleanenergy.org/explore-programs-and-offers/",desc:"MCE customers (Marin, Napa, Solano, Contra Costa counties) can receive bill credits for solar storage via the Solar Billing Plan. MCE also helps customers navigate SGIP through their program resources."},
-    {name:"DSGS — Demand Side Grid Support",provider:"CA Energy Commission (statewide)",type:"state",calc:b=>({amount:b.kw*175,label:`~$150–450/yr (varies by NEM tariff)`}),tags:["vpp","annual","new"],url:"https://www.energy.ca.gov/programs-and-topics/programs/demand-side-grid-support-program",desc:"Statewide CEC program paying residential battery owners to reduce load during summer grid stress events (May–Oct). Capacity-based payments avg $150–450/yr depending on NEM tariff; +30% performance bonus through 2026. Enroll through your battery manufacturer (Enphase, Tesla, SolarEdge, etc.) via PG&E, SCE, or SDG&E. Note: 2026+ funding is subject to legislative reauthorization."},
+    {name:"DSGS — Demand Side Grid Support",provider:"CA Energy Commission (statewide)",type:"state",calc:b=>({amount:b.kw*175,label:`~$175/kW × ${b.kw} kW = $${Math.round(b.kw*175).toLocaleString()}/yr`}),tags:["vpp","annual","new"],url:"https://www.energy.ca.gov/programs-and-topics/programs/demand-side-grid-support-program",desc:"Statewide CEC program paying residential battery owners to dispatch during summer grid stress events (May–Oct). Pays ~$150–200/kW/yr depending on NEM tariff (NEM 2.0 earns more than NEM 3.0). The $175/kW used here is a mid-range estimate. +30% performance bonus available through 2026. Enroll through your battery manufacturer (Tesla, Enphase, etc.) via PG&E, SCE, or SDG&E. Note: 2026+ funding subject to legislative reauthorization."},
     {name:"ELRP — Emergency Load Reduction Program",provider:"CPUC / PG&E / SCE / SDG&E",type:"state",calc:b=>({amount:200,label:"$2/kWh during grid emergencies"}),tags:["vpp","annual"],url:"https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric-costs/demand-response-dr/emergency-load-reduction-program",desc:"Pays $2/kWh for battery discharge during declared grid emergencies (May–Oct, 4–9pm), triggered by CAISO Emergency Alerts. Voluntary — no penalty for opting out. Active through October 2027. Residential participation via battery manufacturer enrollment with your IOU (PG&E, SCE, or SDG&E)."}
   ]},
   NY:{name:"New York",description:"Targeting 6 GW of storage by 2030 with NYSERDA leading statewide incentives.",nonStackable:false,incentives:[
@@ -1179,33 +1134,8 @@ function selectState(code){
   selectedState=code;
   const asi=document.getElementById('all-states-item');
   if(asi){asi.style.borderLeftColor='transparent';asi.style.background='';}
-  document.querySelectorAll('.state-item[data-code]').forEach(el=>el.classList.toggle('active',el.dataset.code===code));
-  document.querySelectorAll('.state-shape').forEach(el=>el.classList.toggle('active-state',el.id==='map-'+code));
-  updateMapColors();renderState(code);
-  document.getElementById('content-panel').scrollTop=0;
-}
-
-function selectAllStates(){
-  selectedState=null;
-  const asi=document.getElementById('all-states-item');
-  if(asi){asi.style.borderLeftColor='#013300';asi.style.background='rgba(1,51,0,.06)';}
-  document.querySelectorAll('.state-item[data-code]').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.state-shape').forEach(el=>el.classList.remove('active-state'));
-  updateMapColors();
-  renderAllStates();
-  document.getElementById('content-panel').scrollTop=0;
-}
-
-function renderAllStates(){
-  const b=batteries[selectedBattery];
-  const panel=document.getElementById('content-panel');
-  const vppPrograms=[];
-  const upfrontPrograms=[];
-  Object.entries(incentiveData).forEach(([code,sd])=>{
-    sd.incentives.forEach(inc=>{
-      const calc=inc.calc(b);
-      const isVpp=inc.tags.includes('vpp')||inc.tags.includes('annual');
-      const entry={...inc,_stateName:sd.name,_stateCode:code,_calc:calc};
+  document.querySelectorAll('
+  document.querySelectorAll(';
       if(isVpp)vppPrograms.push(entry);
       else if(inc.tags.includes('upfront')||inc.tags.includes('tax'))upfrontPrograms.push(entry);
     });
@@ -1368,7 +1298,7 @@ function renderState(code){
 }
 
 // ── STATE SIDEBAR LIST ─────────────────────────────────────────
-function buildStateList(filter){
+function buildStateList(filter){ return; // sidebar removed
   const b=batteries[selectedBattery];
   const container=document.getElementById('state-list');
   const entries=Object.entries(incentiveData).sort((a,b2)=>a[1].name.localeCompare(b2[1].name))
