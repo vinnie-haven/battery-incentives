@@ -31,8 +31,8 @@
   --black:   #013300;
   --ink:     #013300;
   --ink2:    #1a4d1a;
-  --ink3:    #4a6b3a;
-  --ink4:    #7a9a6a;
+  --ink3:    #333333;
+  --ink4:    #666666;
   --rule:    #1a4d1a;
   --rule2:   #0d3d0d;
   --paper:   #EEEFE8;
@@ -204,44 +204,14 @@ body {
 }
 
 /* ─── HERO STRIP ─────────────────────────────────────────────────────────── */
-.hero-strip {
-  background: var(--haven-green);
-  border-bottom: 3px solid var(--sage);
-  padding: 40px 32px 36px;
-  display: grid;
-  grid-template-columns: 1fr 440px;
-  gap: 40px;
-  align-items: end;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 14px;
-  opacity: .7;
-}
-.hero-headline {
-  font-family: var(--display);
-  font-size: clamp(54px, 7vw, 92px);
-  letter-spacing: 2px;
-  line-height: .95;
-  color: var(--haven-off);
-  margin-bottom: 18px;
-}
+
+
+
 .hero-headline em {
   color: var(--sage);
   font-style: normal;
 }
-.hero-body {
-  font-size: 14px;
-  font-weight: 300;
-  color: rgba(238,239,232,.6);
-  line-height: 1.7;
-  max-width: 440px;
-}
+
 /* Address bar inside hero */
 .hero-addr {
   padding: 20px;
@@ -342,6 +312,7 @@ body {
 /* ─── BATTERY SELECTOR ───────────────────────────────────────────────────── */
 .battery-strip {
   background: var(--haven-off2);
+  border-top: none;
   border-bottom: 1px solid var(--haven-off3);
   padding: 16px 32px;
   display: flex;
@@ -354,7 +325,7 @@ body {
   font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ink3);
+  color: #555555;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -385,12 +356,12 @@ body {
 .battery-card.selected .bc-check { display: flex; }
 .battery-card.selected.franklin .bc-check { background: var(--brick); }
 .bc-left {}
-.bc-brand { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); }
+.bc-brand { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #666666; }
 .bc-name { font-family: var(--display); font-size: 20px; letter-spacing: .5px; color: var(--haven-green); line-height: 1; margin-top: 1px; }
 .battery-card.selected .bc-name { color: var(--haven-green); }
 .battery-card.selected.franklin .bc-name { color: var(--brick); }
 .bc-specs { display: flex; gap: 14px; }
-.bc-spec { font-size: 11px; color: var(--ink3); }
+.bc-spec { font-size: 11px; color: #555555; }
 .bc-spec strong { display: block; font-family: var(--mono); font-size: 12px; color: var(--haven-green); font-weight: 500; }
 
 /* ─── CONTROL BAR ────────────────────────────────────────────────────────── */
@@ -408,7 +379,7 @@ body {
   font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ink3);
+  color: #555555;
   padding-right: 20px;
   border-right: 1px solid var(--haven-off3);
   margin-right: 16px;
@@ -424,7 +395,7 @@ body {
   border-radius: 4px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--ink4);
+  color: #777777;
   cursor: pointer;
   transition: all .14s;
 }
@@ -454,7 +425,7 @@ body {
   font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ink3);
+  color: #555555;
   padding: 8px 12px 5px;
   border-bottom: 1px solid var(--haven-off3);
 }
@@ -490,7 +461,7 @@ body {
 .badge { width: 5px; height: 5px; border-radius: 50%; background: var(--haven-off3); }
 .badge.has-state { background: var(--sage); }
 .badge.has-utility { background: var(--blue); }
-.state-total { font-family: var(--mono); font-size: 10px; color: var(--ink3); }
+.state-total { font-family: var(--mono); font-size: 10px; color: #666666; }
 
 /* Map panel */
 .map-panel {
@@ -507,7 +478,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.map-panel-title { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink3); }
+.map-panel-title { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #555555; }
 #us-map-svg { flex: 1; width: 100%; display: block; background: var(--haven-off2); }
 .map-legend {
   display: flex; gap: 12px; padding: 8px 14px;
@@ -515,7 +486,7 @@ body {
   flex-wrap: wrap;
   background: var(--haven-off2);
 }
-.legend-item { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: var(--ink3); }
+.legend-item { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: #666666; }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
 .state-shape { cursor: pointer; stroke: var(--haven-off2); stroke-width: 0.6; transition: stroke-width .12s; }
 .state-shape:hover { stroke: var(--haven-green3); stroke-width: 1.4; }
@@ -552,7 +523,7 @@ body {
   color: var(--haven-green);
   margin-bottom: 6px;
 }
-.state-subtitle { color: var(--ink3); font-size: 12px; max-width: 320px; line-height: 1.55; font-family: var(--mono); }
+.state-subtitle { color: #555555; font-size: 12px; max-width: 320px; line-height: 1.55; font-family: var(--mono); }
 .total-box {
   background: var(--haven-off2);
   border: 1px solid var(--haven-off3);
@@ -561,9 +532,9 @@ body {
   text-align: right;
   flex-shrink: 0;
 }
-.total-label { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); margin-bottom: 3px; }
+.total-label { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #666666; margin-bottom: 3px; }
 .total-amount { font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--haven-green); letter-spacing: -1px; }
-.total-battery { font-size: 10px; color: var(--ink3); margin-top: 2px; font-family: var(--mono); }
+.total-battery { font-size: 10px; color: #666666; margin-top: 2px; font-family: var(--mono); }
 
 .ca-notice {
   background: var(--birch-bg); border: 1px solid rgba(236,219,168,.5);
@@ -577,7 +548,7 @@ body {
 .section-icon { width: 24px; height: 24px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
 .section-icon.state-icon { background: var(--sage-bg); }
 .section-icon.utility-icon { background: var(--blue-bg); }
-.section-title { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink3); }
+.section-title { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #444444; }
 .section-count { font-family: var(--mono); font-size: 9px; color: var(--ink3); background: var(--surface2); padding: 2px 7px; border-radius: 20px; margin-left: auto; }
 
 .incentive-card {
@@ -591,12 +562,12 @@ body {
 .incentive-card:hover { border-color: var(--haven-green3); box-shadow: 0 2px 8px rgba(1,51,0,.06); }
 .ic-row1 { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
 .ic-name { font-weight: 600; font-size: 13px; line-height: 1.3; color: var(--haven-green); }
-.ic-provider { font-size: 10px; color: var(--ink3); margin-top: 2px; font-family: var(--mono); }
+.ic-provider { font-size: 10px; color: #555555; margin-top: 2px; font-family: var(--mono); }
 .ic-right { text-align: right; flex-shrink: 0; }
 .ic-amount { font-family: var(--mono); font-size: 15px; color: var(--haven-green); font-weight: 600; white-space: nowrap; }
 .ic-amount.vpp-color { color: var(--sage); }
-.ic-battery-calc { font-size: 10px; color: var(--ink3); margin-top: 1px; font-family: var(--mono); }
-.ic-desc { font-size: 11px; color: var(--ink3); line-height: 1.6; border-top: 1px solid var(--haven-off3); padding-top: 8px; margin-top: 6px; font-family: var(--mono); }
+.ic-battery-calc { font-size: 10px; color: #666666; margin-top: 1px; font-family: var(--mono); }
+.ic-desc { font-size: 11px; color: #444444; line-height: 1.6; border-top: 1px solid var(--haven-off3); padding-top: 8px; margin-top: 6px; font-family: var(--mono); }
 .ic-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; flex-wrap: wrap; gap: 5px; }
 .ic-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .ic-tag { font-family: var(--mono); font-size: 9px; padding: 2px 7px; border-radius: 3px; letter-spacing: .4px; text-transform: uppercase; }
@@ -607,6 +578,7 @@ body {
 .ic-tag.income { background: var(--sunset-bg); color: #8a4030; border: 1px solid rgba(223,178,160,.4); }
 .ic-tag.solar-paired { background: var(--birch-bg); color: #7a6830; border: 1px solid rgba(236,219,168,.5); }
 .ic-tag.new { border: 1px solid var(--haven-green3); color: var(--haven-green); background: transparent; }
+.ic-tag.on-bill { background: var(--blue-bg); color: #4a7a8a; border: 1px solid rgba(175,203,221,.4); }
 .ic-tag.cca { background: var(--blue-bg); color: #5a8fa0; border: 1px solid rgba(175,203,221,.4); }
 .ic-link { font-family: var(--mono); font-size: 10px; color: var(--haven-green); text-decoration: none; letter-spacing: .5px; opacity: .5; transition: opacity .12s; }
 .ic-link:hover { opacity: 1; }
@@ -644,7 +616,7 @@ body {
   .header { grid-template-columns: 1fr auto; padding: 0 16px; }
   .header-middle { display: none; }
   .header-right { padding-left: 16px; }
-  .hero-strip { grid-template-columns: 1fr; padding: 28px 16px 24px; gap: 24px; }
+  
   .battery-strip { padding: 12px 16px; }
   .control-bar { padding: 0 16px; }
   .explorer { grid-template-columns: 1fr; height: auto; }
@@ -739,30 +711,7 @@ body {
 
 <!-- BROWSE TAB CONTENT -->
 <div id="browse-tab-content">
-<!-- HERO (Browse tab) -->
-<div class="hero-strip" id="browse-hero">
-  <div>
-    <div class="hero-eyebrow">Residential Energy Storage</div>
-    <div class="hero-headline">FIND YOUR<br><em>INCENTIVES</em></div>
-    <p class="hero-body">Federal, state, and utility programs across 48 states. Select a battery, then explore by state or filter by program type.</p>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:16px;justify-content:flex-end;">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border-radius:8px;overflow:hidden;">
-      <div style="background:rgba(238,239,232,.12);padding:16px 20px;text-align:center;">
-        <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--sage);letter-spacing:-1px;">$30K+</div>
-        <div style="font-family:var(--mono);font-size:9px;color:rgba(238,239,232,.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;">Max stack</div>
-      </div>
-      <div style="background:rgba(238,239,232,.12);padding:16px 20px;text-align:center;">
-        <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--blue);letter-spacing:-1px;">12</div>
-        <div style="font-family:var(--mono);font-size:9px;color:rgba(238,239,232,.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;">VPP programs</div>
-      </div>
-      <div style="background:rgba(238,239,232,.12);padding:16px 20px;text-align:center;">
-        <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--birch);letter-spacing:-1px;">30%</div>
-        <div style="font-family:var(--mono);font-size:9px;color:rgba(238,239,232,.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;">Federal ITC</div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- BATTERY STRIP -->
 <div class="battery-strip">
   <div class="battery-strip-label">Calculate for</div>
@@ -777,7 +726,6 @@ body {
       <div class="bc-specs">
         <div class="bc-spec"><strong>13.5 kWh</strong>capacity</div>
         <div class="bc-spec"><strong>11.5 kW</strong>power</div>
-        <div class="bc-spec"><strong>$15,400</strong>installed</div>
       </div>
     </div>
     <div class="battery-card franklin" data-bat="franklin" onclick="selectBattery('franklin')">
@@ -787,9 +735,8 @@ body {
         <div class="bc-name">aPower 2</div>
       </div>
       <div class="bc-specs">
-        <div class="bc-spec"><strong>13.6 kWh</strong>capacity</div>
+        <div class="bc-spec"><strong>15 kWh</strong>capacity</div>
         <div class="bc-spec"><strong>10.0 kW</strong>power</div>
-        <div class="bc-spec"><strong>$17,500</strong>installed</div>
       </div>
     </div>
   </div>
@@ -883,7 +830,7 @@ body {
         <div class="bc-check">✓</div>
         <div class="bc-left"><div class="bc-brand">FranklinWH</div><div class="bc-name">aPower 2</div></div>
         <div class="bc-specs">
-          <div class="bc-spec"><strong>13.6 kWh</strong>capacity</div>
+          <div class="bc-spec"><strong>15 kWh</strong>capacity</div>
           <div class="bc-spec"><strong>10.0 kW</strong>power</div>
         </div>
       </div>
@@ -1011,8 +958,8 @@ const SL={
 };
 
 const batteries={
-  powerwall:{name:"Powerwall 3",brand:"Tesla",kwh:13.5,kw:11.5,price:15400,color:"#00d4ff"},
-  franklin:{name:"aPower 2",brand:"FranklinWH",kwh:13.6,kw:10.0,price:17500,color:"#7c3aed"}
+  powerwall:{name:"Powerwall 3",brand:"Tesla",kwh:13.5,kw:11.5,color:"#00d4ff"},
+  franklin:{name:"aPower 2",brand:"FranklinWH",kwh:15,kw:10.0,color:"#7c3aed"}
 };
 let selectedBattery='powerwall',selectedState=null,activeFilter='all';
 
@@ -1025,7 +972,7 @@ const incentiveData={
     {name:"SDCP Solar Battery Savings",provider:"San Diego Community Power (CCA)",type:"utility",calc:b=>({amount:b.kwh*375,label:`~$250–500/kWh, avg ~$7,000`}),tags:["upfront","cca","solar-paired","new"],url:"https://sdcommunitypower.org/solar-battery-savings/",desc:"Launched Sept 30, 2025 — $18.8M for 2025-26. Upfront rebate of ~$250–500/kWh for new solar+battery or battery add-on. Plus $0.10/kWh performance payment for weekday 4–9pm discharge. Serves San Diego, Chula Vista, Encinitas, National City & surrounding county areas."},
     {name:"SJCE EcoHome Battery Rebate",provider:"San José Clean Energy (CCA)",type:"utility",calc:b=>({amount:Math.min(b.kwh*125,3250),label:`$125/kWh up to $3,250`}),tags:["upfront","cca"],url:"https://sanjosecleanenergy.org/ecohome-rebate/",desc:"San José Clean Energy EcoHome Rebate: $125/kWh for residential battery storage, capped at $3,250 per system (up to 26 kWh total). SJCE also partners with Haven Energy to help low-income customers access SGIP."},
     {name:"SVCE eHub Battery Rebate",provider:"Silicon Valley Clean Energy (CCA)",type:"utility",calc:b=>({amount:b.kwh*125,label:`~$125/kWh incentive`}),tags:["upfront","cca"],url:"https://ehub.svcleanenergy.org/home-upgrades",desc:"Silicon Valley Clean Energy offers battery rebates and financing via its eHub portal for customers in Cupertino, Saratoga, Campbell, Monte Sereno, and other SVCE service area cities."},
-    {name:"MCE Solar+Storage Bill Credits",provider:"Marin Clean Energy (CCA)",type:"utility",calc:b=>({amount:b.kwh*50,label:"Bill credits for solar+storage"}),tags:["annual","cca"],url:"https://mcecleanenergy.org/explore-programs-and-offers/",desc:"MCE customers (Marin, Napa, Solano, Contra Costa counties) can receive bill credits for solar storage via the Solar Billing Plan. MCE also helps customers navigate SGIP through their program resources."},
+    {name:"MCE Solar+Storage Bill Credits",provider:"Marin Clean Energy (CCA)",type:"utility",calc:b=>({amount:b.kwh*50,label:"Bill credits for solar+storage"}),tags:["annual","cca"],onBill:true,url:"https://mcecleanenergy.org/explore-programs-and-offers/",desc:"MCE customers (Marin, Napa, Solano, Contra Costa counties) can receive bill credits for solar storage via the Solar Billing Plan. MCE also helps customers navigate SGIP through their program resources."},
     {name:"DSGS — Demand Side Grid Support",provider:"CA Energy Commission (statewide)",type:"state",calc:b=>({amount:b.kw*175,label:`~$150–450/yr (varies by NEM tariff)`}),tags:["vpp","annual","new"],url:"https://www.energy.ca.gov/programs-and-topics/programs/demand-side-grid-support-program",desc:"Statewide CEC program paying residential battery owners to reduce load during summer grid stress events (May–Oct). Capacity-based payments avg $150–450/yr depending on NEM tariff; +30% performance bonus through 2026. Enroll through your battery manufacturer (Enphase, Tesla, SolarEdge, etc.) via PG&E, SCE, or SDG&E. Note: 2026+ funding is subject to legislative reauthorization."},
     {name:"ELRP — Emergency Load Reduction Program",provider:"CPUC / PG&E / SCE / SDG&E",type:"state",calc:b=>({amount:200,label:"$2/kWh during grid emergencies"}),tags:["vpp","annual"],url:"https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric-costs/demand-response-dr/emergency-load-reduction-program",desc:"Pays $2/kWh for battery discharge during declared grid emergencies (May–Oct, 4–9pm), triggered by CAISO Emergency Alerts. Voluntary — no penalty for opting out. Active through October 2027. Residential participation via battery manufacturer enrollment with your IOU (PG&E, SCE, or SDG&E)."}
   ]},
@@ -1042,12 +989,12 @@ const incentiveData={
   ]},
   CT:{name:"Connecticut",description:"Energy Storage Solutions offers upfront rebates plus ConnectedSolutions VPP earnings.",nonStackable:false,incentives:[
     {name:"Energy Storage Solutions (ESS) Rebate",provider:"CT Green Bank / Eversource / UI",type:"state",calc:b=>({amount:Math.min(b.kwh*212,7500),label:`$212/kWh up to $7,500`}),tags:["upfront"],url:"https://energystoragect.com/",desc:"Connecticut's statewide ESS program offers up to $7,500 upfront toward residential battery installation (up to 50% of cost). Available to Eversource and UI customers. As of Apr 2026, new enrollments use a revised framework: smaller upfront payment plus higher 10-year performance payments tied to active dispatch. Existing customers may stay under original terms."},
-    {name:"Energy Storage Solutions — VPP Dispatch",provider:"Eversource / United Illuminating",type:"utility",calc:b=>({amount:b.kw*200,label:`$200/kW summer · $25/kW winter`}),tags:["vpp","annual"],url:"https://www.eversource.com/residential/save-money-energy/clean-energy-options/energy-storage-solutions",desc:"ESS active dispatch earns $200/kW for summer events (Jun–Sep, up to 60 events) plus $25/kW for winter events (Nov–Mar, up to 5). A typical 5 kW battery earns ~$1,000/yr. New customers as of Apr 2026 enroll under revised framework with higher ongoing payments over 10-year term. ConnectedSolutions CT closed to new enrollments Dec 2023; existing CS customers earn $225/kW through at least 2027."},
+    {name:"Energy Storage Solutions — VPP Dispatch",provider:"Eversource / United Illuminating",type:"utility",calc:b=>({amount:b.kw*200,label:`$200/kW summer · $25/kW winter`}),tags:["vpp","annual"],onBill:true,url:"https://www.eversource.com/residential/save-money-energy/clean-energy-options/energy-storage-solutions",desc:"ESS active dispatch earns $200/kW for summer events (Jun–Sep, up to 60 events) plus $25/kW for winter events (Nov–Mar, up to 5). A typical 5 kW battery earns ~$1,000/yr. New customers as of Apr 2026 enroll under revised framework with higher ongoing payments over 10-year term. ConnectedSolutions CT closed to new enrollments Dec 2023; existing CS customers earn $225/kW through at least 2027."},
     {name:"CT Green Bank Smart-E Loan",provider:"CT Green Bank",type:"state",calc:b=>({amount:0,label:"0–2% interest financing"}),tags:["upfront"],url:"https://www.ctgreenbank.com/smart-e-loan/",desc:"Below-market 0–2% interest financing for battery storage through CT Green Bank."}
   ]},
   MA:{name:"Massachusetts",description:"Multi-layer stack: ConnectedSolutions, SMART adder, MassCEC rebate, and state tax credit.",nonStackable:false,incentives:[
-    {name:"ConnectedSolutions Demand Response",provider:"Eversource / National Grid / Cape Light Compact",type:"utility",calc:b=>({amount:b.kw*275,label:`$275/kW avg · ~$1,200/yr typical`}),tags:["vpp","annual"],url:"https://www.nationalgridus.com/MA-Home/Connected-Solutions/BatteryProgram",desc:"Battery owners earn $275/kW for average discharge during summer peak demand events (Jun–Sep, up to 60 events). Rate locked in for first 5 summers. Winter season (Dec–Mar) adds ~$50/kW. Average customer earns ~$1,200/yr. Eversource, National Grid, and Cape Light Compact all participate. HEAT Loan provides 0% financing up to $25,000 for enrolled customers."},
-    {name:"SMART Battery Storage Adder",provider:"MA DOER / Utilities",type:"state",calc:b=>({amount:b.kwh*50,label:`~$50/kWh adder over 10 years`}),tags:["annual","solar-paired"],url:"https://www.mass.gov/solar-massachusetts-renewable-target-smart-program",desc:"SMART 3.0 pays additional $/kWh for solar paired with storage over a 10-year contract."},
+    {name:"ConnectedSolutions Demand Response",provider:"Eversource / National Grid / Cape Light Compact",type:"utility",calc:b=>({amount:b.kw*275,label:`$275/kW avg · ~$1,200/yr typical`}),tags:["vpp","annual"],onBill:true,url:"https://www.nationalgridus.com/MA-Home/Connected-Solutions/BatteryProgram",desc:"Battery owners earn $275/kW for average discharge during summer peak demand events (Jun–Sep, up to 60 events). Rate locked in for first 5 summers. Winter season (Dec–Mar) adds ~$50/kW. Average customer earns ~$1,200/yr. Eversource, National Grid, and Cape Light Compact all participate. HEAT Loan provides 0% financing up to $25,000 for enrolled customers."},
+    {name:"SMART Battery Storage Adder",provider:"MA DOER / Utilities",type:"state",calc:b=>({amount:b.kwh*50,label:`~$50/kWh adder over 10 years`}),tags:["annual","solar-paired"],onBill:true,url:"https://www.mass.gov/solar-massachusetts-renewable-target-smart-program",desc:"SMART 3.0 pays additional $/kWh for solar paired with storage over a 10-year contract."},
     {name:"Eversource Battery Rebate",provider:"Eversource (MA)",type:"utility",calc:b=>({amount:500,label:"$500 bill credit"}),tags:["upfront"],url:"https://www.eversource.com/content/ma-c/residential/save-money-energy/connected-solutions",desc:"Eversource MA residential customers receive a $500 bill credit for installing a qualifying battery. Apply within 6 months of installation. Stackable with ConnectedSolutions, SMART adder, and federal tax credit."},
     {name:"Cape Light Compact Battery Rebate",provider:"Cape Light Compact (Cape Cod / MVY)",type:"utility",calc:b=>({amount:2000,label:"$2,000 rebate"}),tags:["upfront"],url:"https://capelightcompact.org/programs/connected-homes/",desc:"Cape Cod and Martha's Vineyard customers of Cape Light Compact can receive a $2,000 battery rebate. Requires enrollment in the Connected Homes demand response program first ($30/mo bill credit for participating in peak events). Stackable with ConnectedSolutions and SMART adder."},
     {name:"MassCEC Residential Battery Rebate",provider:"MA Clean Energy Center",type:"state",calc:b=>({amount:b.kwh*150,label:`~$150/kWh rebate`}),tags:["upfront"],url:"https://www.masscec.com/energy-storage",desc:"Periodic upfront rebates for residential storage from MassCEC. Released in funding rounds."},
@@ -1055,24 +1002,24 @@ const incentiveData={
   ]},
   MD:{name:"Maryland",description:"Pioneer in storage tax credits; program restructuring underway in 2025.",nonStackable:false,incentives:[
     {name:"Maryland Energy Storage Tax Credit",provider:"MD Energy Administration",type:"state",calc:b=>({amount:Math.min(b.price*0.3,5000),label:"Up to $5,000 residential tax credit"}),tags:["tax","new"],url:"https://energy.maryland.gov/pages/residential/energystorage.aspx",desc:"Maryland's energy storage tax credit ($5,000 residential max) is being restructured. New program expected mid-2025. Contact MEA for latest details."},
-    {name:"BGE Battery Demand Response",provider:"Baltimore Gas & Electric",type:"utility",calc:b=>({amount:b.kw*300,label:`~$300/kW annual credits`}),tags:["vpp","annual"],url:"https://bge.com/SmartEnergy/BGESmartEnergyRewards",desc:"BGE bill credits for residential battery owners participating in summer/winter peak demand response events."}
+    {name:"BGE Battery Demand Response",provider:"Baltimore Gas & Electric",type:"utility",calc:b=>({amount:b.kw*300,label:`~$300/kW annual credits`}),tags:["vpp","annual"],onBill:true,url:"https://bge.com/SmartEnergy/BGESmartEnergyRewards",desc:"BGE bill credits for residential battery owners participating in summer/winter peak demand response events."}
   ]},
   CO:{name:"Colorado",description:"Xcel Energy and Black Hills Energy serve different territories. The state tax credit stacks with whichever utility program applies to you.",nonStackable:true,incentives:[
     {name:"CO Residential Energy Storage Tax Credit",provider:"CO Dept of Revenue",type:"state",calc:b=>({amount:b.price*0.10,label:`10% of purchase = $${(b.price*0.10).toFixed(0)}`}),tags:["tax"],url:"https://tax.colorado.gov/energy-tax-credits",desc:"Colorado offers a 10% state income tax credit on qualifying battery storage equipment purchase price."},
     {name:"Xcel Energy Storage Rebate",provider:"Xcel Energy",type:"utility",calc:b=>({amount:Math.min(b.kw*350,5000),label:`$350/kW up to $5,000`}),tags:["upfront"],url:"https://www.xcelenergy.com/programs_and_rebates/residential_programs_and_rebates/solar/solar-*-storage",desc:"$350/kW continuous discharge capacity, capped at $5,000 upfront. Also includes $100/year VPP credit for 5 years."},
-    {name:"Xcel Energy Annual VPP Credit",provider:"Xcel Energy",type:"utility",calc:b=>({amount:100,label:"$100/year × 5 years = $500 total"}),tags:["vpp","annual"],url:"https://www.xcelenergy.com/programs_and_rebates/residential_programs_and_rebates/solar/solar-*-storage",desc:"$100/year for 5 years for allowing 60% battery dispatch during grid peaks. Stacks with the upfront rebate."},
+    {name:"Xcel Energy Annual VPP Credit",provider:"Xcel Energy",type:"utility",calc:b=>({amount:100,label:"$100/year × 5 years = $500 total"}),tags:["vpp","annual"],onBill:true,url:"https://www.xcelenergy.com/programs_and_rebates/residential_programs_and_rebates/solar/solar-*-storage",desc:"$100/year for 5 years for allowing 60% battery dispatch during grid peaks. Stacks with the upfront rebate."},
     {name:"Black Hills Energy Battery Rebate",provider:"Black Hills Energy",type:"utility",calc:b=>({amount:Math.min(b.kw*250,3500),label:`$250/kW up to $3,500`}),tags:["upfront"],url:"https://www.blackhillscorp.com/energy-services/home/rebates",desc:"Black Hills Energy customers in Pueblo and surrounding areas may qualify for up to $3,500 in residential battery storage rebates."}
   ]},
   OR:{name:"Oregon",description:"Energy Trust and Pacific Power Wattsmart serve different utility territories — you can only access one. Solar Within Reach is income-qualified only.",nonStackable:true,incentives:[
     {name:"Energy Trust Battery Rebate",provider:"Energy Trust (PGE & Pacific Power)",type:"utility",calc:b=>({amount:Math.min(b.kwh*475,5700),label:`$475/kWh up to $5,700`}),tags:["upfront","new"],url:"https://www.energytrust.org/residential/incentives/energy-storage/",desc:"New in 2025 — Energy Trust of Oregon offers $475/kWh capped at $5,700 per project for PGE and Pacific Power customers."},
     {name:"Pacific Power Wattsmart — Upfront",provider:"Pacific Power",type:"utility",calc:b=>({amount:Math.min(b.kw*600,3000),label:`$600/kW up to $3,000`}),tags:["upfront"],url:"https://www.pacificpower.net/savings-energy-choices/home/wattsmart-battery.html",desc:"$600/kW upfront rebate capped at $3,000/battery (max 2 batteries)."},
-    {name:"Pacific Power Wattsmart — Annual Credit",provider:"Pacific Power",type:"utility",calc:b=>({amount:b.kw*15,label:`$15/kW/yr = $${(b.kw*15).toFixed(0)}/yr`}),tags:["annual"],url:"https://www.pacificpower.net/savings-energy-choices/home/wattsmart-battery.html",desc:"$15/kW/year bill credit starting in year 2."},
+    {name:"Pacific Power Wattsmart — Annual Credit",provider:"Pacific Power",type:"utility",calc:b=>({amount:b.kw*15,label:`$15/kW/yr = $${(b.kw*15).toFixed(0)}/yr`}),tags:["annual"],onBill:true,url:"https://www.pacificpower.net/savings-energy-choices/home/wattsmart-battery.html",desc:"$15/kW/year bill credit starting in year 2."},
     {name:"Solar Within Reach — Low Income",provider:"Oregon DAS",type:"state",calc:b=>({amount:Math.min(b.kwh*900,9000),label:`$750–900/kWh up to $9,000`}),tags:["upfront","income"],url:"https://www.oregon.gov/energy/at-home/pages/solar-within-reach.aspx",desc:"Income-qualified Oregon residents (≤80% AMI) may receive $750–$900/kWh for solar+storage, up to $9,000+."}
   ]},
   AZ:{name:"Arizona",description:"Two major utility VPP programs and state solar tax credit.",nonStackable:false,incentives:[
     {name:"Arizona Solar Energy Credit",provider:"Arizona Dept of Revenue",type:"state",calc:b=>({amount:Math.min(b.price*0.25,1000),label:"25% of install, max $1,000"}),tags:["tax","solar-paired"],url:"https://azdor.gov/forms/tax-credits-forms/credit-solar-energy-devices",desc:"Arizona 25% state tax credit on solar installation costs, up to $1,000, when battery is part of a solar system."},
-    {name:"TEP Energy Storage Rewards (VPP)",provider:"Tucson Electric Power",type:"utility",calc:b=>({amount:800,label:"$800/battery per year"}),tags:["vpp","annual"],url:"https://www.tep.com/energy-storage-rewards/",desc:"TEP customers earn up to $800/battery/year via Tesla VPP. Enrolled Powerwalls dispatch during high-demand periods."},
-    {name:"APS Virtual Power Plant",provider:"Arizona Public Service",type:"utility",calc:b=>({amount:400,label:"$400/battery per year"}),tags:["vpp","annual"],url:"https://www.aps.com/en/residential/rates-and-programs/battery-storage",desc:"APS customers earn up to $400/battery/year in the APS VPP program. Batteries support the grid during peak demand."},
+    {name:"TEP Energy Storage Rewards (VPP)",provider:"Tucson Electric Power",type:"utility",calc:b=>({amount:800,label:"$800/battery per year"}),tags:["vpp","annual"],onBill:true,url:"https://www.tep.com/energy-storage-rewards/",desc:"TEP customers earn up to $800/battery/year via Tesla VPP. Enrolled Powerwalls dispatch during high-demand periods."},
+    {name:"APS Virtual Power Plant",provider:"Arizona Public Service",type:"utility",calc:b=>({amount:400,label:"$400/battery per year"}),tags:["vpp","annual"],onBill:true,url:"https://www.aps.com/en/residential/rates-and-programs/battery-storage",desc:"APS customers earn up to $400/battery/year in the APS VPP program. Batteries support the grid during peak demand."},
     {name:"SRP Battery Rebate",provider:"Salt River Project",type:"utility",calc:b=>({amount:b.kw*200,label:`$200/kW incentive`}),tags:["upfront"],url:"https://www.srpnet.com/energy/home/solar/battery-storage",desc:"Salt River Project offers residential battery storage incentives for SRP customers. Contact SRP for current program details."}
   ]},
   MN:{name:"Minnesota",description:"One of the strongest non-California state rebate programs.",nonStackable:false,incentives:[
@@ -1082,25 +1029,25 @@ const incentiveData={
   NC:{name:"North Carolina",description:"Duke Energy PowerPair offers up to $9,000 for solar+battery systems.",nonStackable:false,incentives:[
     {name:"Duke PowerPair — Battery Incentive",provider:"Duke Energy Carolinas / Progress",type:"utility",calc:b=>({amount:Math.min(b.kwh*400,5400),label:`$400/kWh up to $5,400`}),tags:["upfront","solar-paired"],url:"https://www.duke-energy.com/home/products/powerpair",desc:"$400/kWh for battery (max $5,400) for new solar+battery systems. New installations only. Program cap of 30,000 kW per territory — limited availability."},
     {name:"Duke PowerPair — Solar Incentive",provider:"Duke Energy Carolinas / Progress",type:"utility",calc:b=>({amount:3600,label:"$0.36/W solar up to 10kW = $3,600"}),tags:["upfront","solar-paired"],url:"https://www.duke-energy.com/home/products/powerpair",desc:"$0.36/W for solar panels up to 10kW ($3,600 max). Must be bundled with battery storage."},
-    {name:"Duke EnergyWise Battery Control Credit",provider:"Duke Energy Progress",type:"utility",calc:b=>({amount:b.kw*6.5*12,label:`$6.50/kW/mo ≈ $${(b.kw*6.5*12).toFixed(0)}/yr`}),tags:["vpp","annual"],url:"https://www.duke-energy.com/home/products/powerpair",desc:"Optional enrollment: Allow Duke dispatch up to 36×/year (max 80% discharge). Earn $6.50/kW/month ($4.61 net)."}
+    {name:"Duke EnergyWise Battery Control Credit",provider:"Duke Energy Progress",type:"utility",calc:b=>({amount:b.kw*6.5*12,label:`$6.50/kW/mo ≈ $${(b.kw*6.5*12).toFixed(0)}/yr`}),tags:["vpp","annual"],onBill:true,url:"https://www.duke-energy.com/home/products/powerpair",desc:"Optional enrollment: Allow Duke dispatch up to 36×/year (max 80% discharge). Earn $6.50/kW/month ($4.61 net)."}
   ]},
   HI:{name:"Hawaii",description:"Battery Bonus closed July 2024. BYOD+ is the active program.",nonStackable:false,incentives:[
     {name:"HECO BYOD+ Upfront Incentive",provider:"Hawaiian Electric",type:"utility",calc:b=>({amount:b.kw*250,label:`$250/kW upfront`}),tags:["upfront"],url:"https://www.hawaiianelectric.com/products-and-services/customer-incentive-programs/bring-your-own-device",desc:"BYOD+ upfront incentive for residential battery owners who dispatch 6–8:30pm daily."},
-    {name:"HECO BYOD+ Monthly Credits",provider:"Hawaiian Electric",type:"utility",calc:b=>({amount:b.kw*5*12,label:`$5/kW/mo × 12 = $${(b.kw*5*12).toFixed(0)}/yr`}),tags:["vpp","annual"],url:"https://www.hawaiianelectric.com/products-and-services/customer-incentive-programs/bring-your-own-device",desc:"Ongoing monthly bill credits for dispatching battery daily 6–8:30pm."},
+    {name:"HECO BYOD+ Monthly Credits",provider:"Hawaiian Electric",type:"utility",calc:b=>({amount:b.kw*5*12,label:`$5/kW/mo × 12 = $${(b.kw*5*12).toFixed(0)}/yr`}),tags:["vpp","annual"],onBill:true,url:"https://www.hawaiianelectric.com/products-and-services/customer-incentive-programs/bring-your-own-device",desc:"Ongoing monthly bill credits for dispatching battery daily 6–8:30pm."},
     {name:"Hawaii State Solar Tax Credit",provider:"Hawaii DOTAX",type:"state",calc:b=>({amount:b.price*0.35,label:`35% state tax credit = $${(b.price*0.35).toFixed(0)}`}),tags:["tax","solar-paired"],url:"https://tax.hawaii.gov/forms/a1_b1_4solar/",desc:"Hawaii offers a 35% state income tax credit on solar+storage installations — one of the highest state credits in the nation."}
   ]},
   IL:{name:"Illinois",description:"CRGA Act targets 3 GW by 2030 with new Storage for All rebates.",nonStackable:false,incentives:[
     {name:"Storage for All Rebate (CRGA Act)",provider:"Illinois Power Agency / ComEd / Ameren",type:"state",calc:b=>({amount:b.kwh*200,label:`~$200/kWh est.`}),tags:["upfront","new"],url:"https://ipa.illinois.gov/renewable-resources/energy-storage.html",desc:"Illinois' Clean & Reliable Grid Affordability Act creates Storage for All residential rebates, plus enhanced rates for income-qualified households. 3 GW goal by 2030."},
-    {name:"Illinois VPP Compensation",provider:"ComEd / Ameren",type:"utility",calc:b=>({amount:b.kw*150,label:`~$150/kW annual`}),tags:["vpp","annual"],url:"https://www.comed.com/SmartEnergy/MyGreenPowerConnection/Pages/SolarRebates.aspx",desc:"CRGA creates VPP programs through ComEd and Ameren. Battery owners compensated for grid services — higher rates for income-eligible participants."}
+    {name:"Illinois VPP Compensation",provider:"ComEd / Ameren",type:"utility",calc:b=>({amount:b.kw*150,label:`~$150/kW annual`}),tags:["vpp","annual"],onBill:true,url:"https://www.comed.com/SmartEnergy/MyGreenPowerConnection/Pages/SolarRebates.aspx",desc:"CRGA creates VPP programs through ComEd and Ameren. Battery owners compensated for grid services — higher rates for income-eligible participants."}
   ]},
   TX:{name:"Texas",description:"Deregulated market — REP and municipal utility programs.",nonStackable:false,incentives:[
-    {name:"Reliant Octo GridBoost",provider:"Reliant Energy (REP)",type:"utility",calc:b=>({amount:480,label:"$40/month = $480/yr"}),tags:["vpp","annual"],url:"https://www.reliant.com/en/residential/electricity/energy-management/battery-perks",desc:"$40/month for allowing battery dispatch during peak events. Can also earn real-time energy credits at market rates with no cap."},
+    {name:"Reliant Octo GridBoost",provider:"Reliant Energy (REP)",type:"utility",calc:b=>({amount:480,label:"$40/month = $480/yr"}),tags:["vpp","annual"],onBill:true,url:"https://www.reliant.com/en/residential/electricity/energy-management/battery-perks",desc:"$40/month for allowing battery dispatch during peak events. Can also earn real-time energy credits at market rates with no cap."},
     {name:"Oncor Residential Battery Incentive",provider:"Oncor Electric Delivery",type:"utility",calc:b=>({amount:b.kw*200,label:`$200/kW incentive`}),tags:["upfront"],url:"https://www.oncor.com/takealoadofftexas/pages/residentialsolar",desc:"Oncor offers residential battery storage incentives in its North Texas (DFW) territory. Contact Oncor or your REP for current details."},
     {name:"Austin Energy Battery Rebate",provider:"Austin Energy",type:"utility",calc:b=>({amount:b.kwh*100,label:`$100/kWh rebate`}),tags:["upfront"],url:"https://austinenergy.com/green-power/solar-rebates-incentives/battery-storage",desc:"Austin Energy offers $100/kWh for residential battery storage within Austin's city service territory."}
   ]},
   FL:{name:"Florida",description:"Limited state programs; FPL and Duke Florida offer demand response.",nonStackable:false,incentives:[
-    {name:"FPL On Call Savings Program",provider:"Florida Power & Light",type:"utility",calc:b=>({amount:b.kw*120,label:`~$120/kW annual credits`}),tags:["vpp","annual"],url:null,desc:"FPL demand response credits for residential battery owners who allow peak event dispatch."},
-    {name:"Duke Energy Florida Battery Incentive",provider:"Duke Energy Florida",type:"utility",calc:b=>({amount:b.kw*200,label:`~$200/kW annual VPP credit`}),tags:["vpp","annual"],url:"https://www.duke-energy.com/home/products/powerpair",desc:"Duke Energy Florida offers battery demand response programs similar to its NC offerings. Contact Duke Energy Florida for latest details."}
+    {name:"FPL On Call Savings Program",provider:"Florida Power & Light",type:"utility",calc:b=>({amount:b.kw*120,label:`~$120/kW annual credits`}),tags:["vpp","annual"],onBill:true,url:null,desc:"FPL demand response credits for residential battery owners who allow peak event dispatch."},
+    {name:"Duke Energy Florida Battery Incentive",provider:"Duke Energy Florida",type:"utility",calc:b=>({amount:b.kw*200,label:`~$200/kW annual VPP credit`}),tags:["vpp","annual"],onBill:true,url:"https://www.duke-energy.com/home/products/powerpair",desc:"Duke Energy Florida offers battery demand response programs similar to its NC offerings. Contact Duke Energy Florida for latest details."}
   ]},
   WA:{name:"Washington",description:"Sales tax exemption plus Puget Sound Energy storage pilot.",nonStackable:false,incentives:[
     {name:"WA Sales Tax Exemption on Storage",provider:"WA Dept of Revenue",type:"state",calc:b=>({amount:b.price*0.065,label:`~6.5% tax exemption = $${(b.price*0.065).toFixed(0)}`}),tags:["upfront"],url:"https://dor.wa.gov/find-taxes-rates/tax-incentives/incentives-businesses/renewable-energy-system-tax-incentive",desc:"Washington exempts battery storage from state and local sales taxes, saving 6.5–10% at purchase depending on locality."},
@@ -1110,7 +1057,7 @@ const incentiveData={
     {name:"NV Energy Battery Storage Rebate",provider:"NV Energy",type:"utility",calc:b=>({amount:b.kwh*100,label:`~$100/kWh rebate`}),tags:["upfront"],url:"https://www.nvenergy.com/cleanenergy/battery-storage",desc:"NV Energy offers residential battery rebates. Nevada law prohibits utilities from placing battery owners in a separate rate class solely for owning storage."}
   ]},
   RI:{name:"Rhode Island",description:"ConnectedSolutions VPP plus OER rebates.",nonStackable:false,incentives:[
-    {name:"ConnectedSolutions RI — VPP",provider:"National Grid RI",type:"utility",calc:b=>({amount:b.kw*175,label:`~$175/kW annual`}),tags:["vpp","annual"],url:"https://www.nationalgridus.com/RI-Home/Energy-Saving-Programs/Connected-Solutions",desc:"National Grid RI pays residential battery owners for dispatching during demand response events."},
+    {name:"ConnectedSolutions RI — VPP",provider:"National Grid RI",type:"utility",calc:b=>({amount:b.kw*175,label:`~$175/kW annual`}),tags:["vpp","annual"],onBill:true,url:"https://www.nationalgridus.com/RI-Home/Energy-Saving-Programs/Connected-Solutions",desc:"National Grid RI pays residential battery owners for dispatching during demand response events."},
     {name:"RI Commerce Battery Rebate",provider:"RI Office of Energy Resources",type:"state",calc:b=>({amount:b.kwh*100,label:`~$100/kWh rebate`}),tags:["upfront"],url:"https://energy.ri.gov/renewable-energy/solar-energy/storage",desc:"RI OER periodically offers residential battery rebates. Check for current funding availability."}
   ]},
   SC:{name:"South Carolina",description:"Duke Energy Carolinas PowerPair program extends into SC.",nonStackable:false,incentives:[
@@ -1138,11 +1085,11 @@ const incentiveData={
     {name:"GMP Resilience Package",provider:"Green Mountain Power",type:"utility",calc:b=>({amount:1500,label:"$1,500 upfront or $55/mo lease option"}),tags:["upfront"],url:"https://greenmountainpower.com/innovation/resilience-package/",desc:"GMP's unique program: lease a Tesla Powerwall for $55/month OR buy through GMP at reduced cost. GMP uses batteries as a grid asset. Customers keep backup power access."}
   ]},
   GA:{name:"Georgia",description:"Georgia Power battery demand response credit program.",nonStackable:false,incentives:[
-    {name:"Georgia Power Battery Saver Program",provider:"Georgia Power",type:"utility",calc:b=>({amount:b.kw*150,label:`~$150/kW annual credit`}),tags:["vpp","annual"],url:"https://www.georgiapower.com/save-money-energy/for-your-home/efficiency-programs.html",desc:"Georgia Power offers bill credits for residential battery owners who participate in demand response events during peak periods."}
+    {name:"Georgia Power Battery Saver Program",provider:"Georgia Power",type:"utility",calc:b=>({amount:b.kw*150,label:`~$150/kW annual credit`}),tags:["vpp","annual"],onBill:true,url:"https://www.georgiapower.com/save-money-energy/for-your-home/efficiency-programs.html",desc:"Georgia Power offers bill credits for residential battery owners who participate in demand response events during peak periods."}
   ]},
   UT:{name:"Utah",description:"Rocky Mountain Power Wattsmart Battery program.",nonStackable:false,incentives:[
     {name:"Rocky Mountain Power — Upfront",provider:"Rocky Mountain Power",type:"utility",calc:b=>({amount:Math.min(b.kw*600,3000),label:`$600/kW up to $3,000`}),tags:["upfront"],url:"https://www.rockymountainpower.net/wattsmart-battery",desc:"$600/kW upfront rebate capped at $3,000/battery."},
-    {name:"Rocky Mountain Power — Annual Credit",provider:"Rocky Mountain Power",type:"utility",calc:b=>({amount:b.kw*15,label:`$15/kW/yr = $${(b.kw*15).toFixed(0)}/yr`}),tags:["annual"],url:"https://www.rockymountainpower.net/wattsmart-battery",desc:"$15/kW/year bill credit starting in year 2."}
+    {name:"Rocky Mountain Power — Annual Credit",provider:"Rocky Mountain Power",type:"utility",calc:b=>({amount:b.kw*15,label:`$15/kW/yr = $${(b.kw*15).toFixed(0)}/yr`}),tags:["annual"],onBill:true,url:"https://www.rockymountainpower.net/wattsmart-battery",desc:"$15/kW/year bill credit starting in year 2."}
   ]},
   ID:{name:"Idaho",description:"Idaho Power solar+storage incentive program.",nonStackable:false,incentives:[
     {name:"Idaho Power Solar+Storage Incentive",provider:"Idaho Power",type:"utility",calc:b=>({amount:b.kwh*60,label:`~$60/kWh incentive`}),tags:["upfront"],url:"https://www.idahopower.com/energy-environment/energy-efficiency/rebates-incentives/",desc:"Idaho Power offers limited residential battery storage incentives for solar+storage systems."}
@@ -1274,7 +1221,7 @@ function renderAllStates(){
     if(activeFilter==='income')return list.filter(i=>i.tags.includes('income'));
     return list;
   }
-  const tagL={upfront:'upfront',annual:'recurring',tax:'tax credit',vpp:'VPP / earn',income:'income-qualified','solar-paired':'solar+storage',new:'new 2025',cca:'CCA'};
+  const tagL={upfront:'upfront',annual:'recurring',tax:'tax credit',vpp:'VPP / earn',income:'income-qualified','solar-paired':'solar+storage',new:'new 2025',cca:'CCA','on-bill':'on-bill credit'};
   function tH(tags){return tags.map(t=>`<span class="ic-tag ${t}">${tagL[t]||t}</span>`).join('');}
   function cardH(inc){
     const isVpp=inc.tags.includes('vpp')||inc.tags.includes('annual');
@@ -1282,13 +1229,14 @@ function renderAllStates(){
     const sf=isVpp?'/yr':'';
     const link=inc.url?`<a class="ic-link" href="${inc.url}" target="_blank">↗ Details</a>`:'';
     const chip=`<span onclick="selectState('${inc._stateCode}')" style="font-family:var(--mono);font-size:9px;background:var(--sage-bg);color:var(--haven-green);padding:2px 8px;border-radius:3px;cursor:pointer;letter-spacing:.5px;border:1px solid rgba(125,172,101,.25);">${inc._stateName}</span>`;
+    const allTags=inc.onBill?[...inc.tags,'on-bill']:inc.tags;
     return`<div class="incentive-card">
       <div class="ic-row1">
         <div><div class="ic-name">${inc.name}</div><div class="ic-provider">${inc.provider}</div></div>
         <div class="ic-right"><div class="${amtCls}">$${Math.round(inc._calc.amount).toLocaleString()}${sf}</div><div class="ic-battery-calc">${inc._calc.label}</div></div>
       </div>
       <div class="ic-desc">${inc.desc}</div>
-      <div class="ic-footer"><div class="ic-tags">${chip}${tH(inc.tags)}</div>${link}</div>
+      <div class="ic-footer"><div class="ic-tags">${chip}${tH(allTags)}</div>${link}</div>
     </div>`;
   }
   function sectionH(title,icon,cls,items){
@@ -1362,7 +1310,7 @@ function renderState(code){
   }
   const stateIncs=filtered.filter(i=>i.type==='state');
   const utilityIncs=filtered.filter(i=>i.type==='utility');
-  const tagL={upfront:'upfront',annual:'recurring',tax:'tax credit',vpp:'VPP / earn',income:'income-qualified','solar-paired':'solar+storage',new:'new 2025',cca:'CCA'};
+  const tagL={upfront:'upfront',annual:'recurring',tax:'tax credit',vpp:'VPP / earn',income:'income-qualified','solar-paired':'solar+storage',new:'new 2025',cca:'CCA','on-bill':'on-bill credit'};
   function tH(tags){return tags.map(t=>`<span class="ic-tag ${t}">${tagL[t]||t}</span>`).join('');}
   function cH(inc){
     const calc=inc.calc(b);
@@ -1380,6 +1328,8 @@ function renderState(code){
       cardStyle=' style="opacity:.65;"';
     }
     const altNote=inc._vppAlt?`<div style="font-family:var(--mono);font-size:10px;color:var(--ink4);margin-top:8px;padding:7px 10px;background:var(--haven-off2);border-radius:4px;border:1px solid var(--haven-off3);">⚠ VPP programs are mutually exclusive — enroll in one at a time. This is an alternative option.</div>`:'';
+    // Inject on-bill tag if applicable
+    const displayTags=inc.onBill?[...inc.tags,'on-bill']:inc.tags;
     return`<div class="incentive-card"${cardStyle}>
       <div class="ic-row1">
         <div><div class="ic-name">${inc.name}</div><div class="ic-provider">${inc.provider}</div></div>
@@ -1387,7 +1337,7 @@ function renderState(code){
       </div>
       <div class="ic-desc">${inc.desc}</div>
       ${altNote}
-      <div class="ic-footer"><div class="ic-tags">${vppBadge}${tH(inc.tags)}</div>${link}</div>
+      <div class="ic-footer"><div class="ic-tags">${vppBadge}${tH(displayTags)}</div>${link}</div>
     </div>`;
   }
   function sH(title,icon,cls,items){
