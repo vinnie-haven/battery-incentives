@@ -1136,15 +1136,37 @@ function selectState(code){
   selectedState=code;
   const asi=document.getElementById('all-states-item');
   if(asi){asi.style.borderLeftColor='transparent';asi.style.background='';}
-  document.querySelectorAll('
-  document.querySelectorAll(';
+  document.querySelectorAll('.state-shape').forEach(el=>el.classList.toggle('active-state',el.id==='map-'+code));
+  updateMapColors();renderState(code);
+  document.getElementById('content-panel').scrollTop=0;
+}
+
+function selectAllStates(){
+  selectedState=null;
+  const asi=document.getElementById('all-states-item');
+  if(asi){asi.style.borderLeftColor='#013300';asi.style.background='rgba(1,51,0,.06)';}
+  document.querySelectorAll('.state-shape').forEach(el=>el.classList.remove('active-state'));
+  updateMapColors();
+  renderAllStates();
+  document.getElementById('content-panel').scrollTop=0;
+}
+
+function renderAllStates(){
+  const b=batteries[selectedBattery];
+  const panel=document.getElementById('content-panel');
+  const vppPrograms=[];
+  const upfrontPrograms=[];
+  Object.entries(incentiveData).forEach(([code,sd])=>{
+    sd.incentives.forEach(inc=>{
+      const calc=inc.calc(b);
+      const isVpp=inc.tags.includes('vpp')||inc.tags.includes('annual');
+      const entry={...inc,_stateName:sd.name,_stateCode:code,_calc:calc};
       if(isVpp)vppPrograms.push(entry);
       else if(inc.tags.includes('upfront')||inc.tags.includes('tax'))upfrontPrograms.push(entry);
     });
   });
   vppPrograms.sort((a,z)=>z._calc.amount-a._calc.amount);
   upfrontPrograms.sort((a,z)=>z._calc.amount-a._calc.amount);
-  // Apply filter
   function filterList(list){
     if(activeFilter==='all')return list;
     if(activeFilter==='vpp')return list.filter(i=>i.tags.includes('vpp')||i.tags.includes('annual'));
@@ -1183,7 +1205,7 @@ function selectState(code){
     <div class="state-header">
       <div>
         <div class="state-name-big">ALL STATES</div>
-        <div class="state-subtitle">Every active program. Click a state chip to drill in.</div>
+        <div class="state-subtitle">Every active program. Click a state on the map to drill in.</div>
       </div>
       <div style="display:flex;gap:10px;">
         <div class="total-box"><div class="total-label">VPP Programs</div><div class="total-amount" style="color:#5a8fa0;">${vppPrograms.length}</div><div class="total-battery">earn annually</div></div>
