@@ -435,6 +435,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
+  height: 100%;
 }
 .map-panel-header {
   padding: 10px 14px;
@@ -444,7 +446,7 @@ body {
   justify-content: space-between;
 }
 .map-panel-title { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #555555; }
-#us-map-svg { flex: 1; width: 100%; display: block; background: var(--haven-off2); }
+#us-map-svg { flex: 1; width: 100%; display: block; background: var(--haven-off2); min-height: 400px; height: 100%; }
 .map-legend {
   display: flex; gap: 12px; padding: 8px 14px;
   border-top: 1px solid var(--haven-off3);
@@ -1685,8 +1687,7 @@ function getStateAbbr(s) {
 // init handled below
 
 // ── INIT ───────────────────────────────────────────────────────
-buildMap();
-buildStateList('');
+// buildMap called in DOMContentLoaded
 
 </script>
 <script>
@@ -1723,6 +1724,7 @@ window.selectBattery=function(bat){
 // Initial sync
 document.addEventListener('DOMContentLoaded',()=>{
   initAutocomplete();
+  buildMap();
   syncBatteryCards(selectedBattery);
   updateMastMax();
   updateMapColors();
