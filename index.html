@@ -453,7 +453,7 @@ body {
 }
 .legend-item { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: #666666; }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
-.state-shape { cursor: pointer; stroke: var(--haven-off2); stroke-width: 0.6; transition: stroke-width .12s; }
+.state-shape { cursor: pointer; fill: #D8D9D0; stroke: var(--haven-off); stroke-width: 0.6; transition: stroke-width .12s; }
 .state-shape:hover { stroke: var(--haven-green3); stroke-width: 1.4; }
 .state-shape.active-state { stroke: var(--haven-green); stroke-width: 2.5; }
 
@@ -1682,9 +1682,7 @@ function getStateAbbr(s) {
 }
 
 // Allow Enter key to trigger lookup
-document.addEventListener('DOMContentLoaded', () => {
-  initAutocomplete();
-});
+// init handled below
 
 // ── INIT ───────────────────────────────────────────────────────
 buildMap();
@@ -1727,7 +1725,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   initAutocomplete();
   syncBatteryCards(selectedBattery);
   updateMastMax();
-  // Start on All States view
+  updateMapColors();
   selectAllStates();
 });
 
