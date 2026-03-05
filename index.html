@@ -455,9 +455,9 @@ body {
 }
 .legend-item { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: #666666; }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
-.state-shape { cursor: pointer; fill: #D8D9D0; stroke: var(--haven-off); stroke-width: 0.6; transition: stroke-width .12s; }
+.state-shape { cursor: pointer; stroke: #fff; stroke-width: 0.6; transition: fill .15s, stroke-width .12s; }
 .state-shape:hover { stroke: var(--haven-green3); stroke-width: 1.4; }
-.state-shape.active-state { stroke: var(--haven-green); stroke-width: 2.5; }
+.state-shape.active-state { stroke: var(--haven-green); stroke-width: 2.5; fill: #013300 !important; }
 
 /* Content panel */
 .content {
@@ -1097,11 +1097,11 @@ function updateMapColors(){
   Object.entries(incentiveData).forEach(([code,data])=>{
     const el=document.getElementById('map-'+code);if(!el)return;
     const n=data.incentives.length;
-    if(code===selectedState){el.setAttribute('fill','#013300');return;}
-    if(n>=4)el.setAttribute('fill','#7DAC65');
-    else if(n>=2)el.setAttribute('fill','#AFCBDD');
-    else if(n>=1)el.setAttribute('fill','#ECDBA8');
-    else el.setAttribute('fill','#D8D9D0');
+    if(code===selectedState){el.style.fill='#013300';return;}
+    if(n>=4)el.style.fill='#7DAC65';
+    else if(n>=2)el.style.fill='#AFCBDD';
+    else if(n>=1)el.style.fill='#ECDBA8';
+    else el.style.fill='#D8D9D0';
   });
 }
 
